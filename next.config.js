@@ -5,6 +5,10 @@ const nextConfig = {
   images: {
     domains: ["links.papareact.com", "jsonkeeper.com"],
   },
+  env: {
+    mapbox_key:
+      "pk.eyJ1Ijoic2FuYXRoLXAiLCJhIjoiY2t2czJ6aGtlMDk1NDJvcWZtZnByNTI4ZyJ9.K2PE6VSYUmSmvDdxTjIS2Q",
+  },
 };
 
 module.exports = nextConfig;
