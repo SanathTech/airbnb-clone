@@ -15,14 +15,20 @@ function Search({ searchResults }) {
 
   return (
     <div>
-      <Header placeholder={`${location} | ${range} | ${noOfGuests} guests`} />
+      <Header
+        placeholder={`${
+          location === "Unknown" ? "London" : location
+        } | ${range} | ${noOfGuests} guests`}
+      />
       <main className="flex">
         <section className="flex-grow pt-14 px-6">
           <p className="text-xs">
-            300+ Stays - {range} - {noOfGuests} guests
+            {searchResults.length} Stays - {range} - {noOfGuests} guests
           </p>
           <h1 className="text-3xl font-semibold mt-2 mb-6">
-            Stays in {location}
+            {location === "Unknown"
+              ? "Sorry, we couldn't find any matches. How about London?"
+              : `Stays in ${location}`}
           </h1>
           <div className="hidden lg:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
             <p className="button">Cancellation Flexibility</p>
@@ -72,10 +78,22 @@ function Search({ searchResults }) {
 
 export default Search;
 
-export async function getServerSideProps() {
-  const searchResults = await fetch("https://www.jsonkeeper.com/b/OVTA").then(
-    (res) => res.json()
-  );
+export async function getServerSideProps(context) {
+  const { location } = context.query;
+  var searchResults = "";
+  if (location === "New York") {
+    searchResults = await fetch("https://www.jsonkeeper.com/b/OVTA").then(
+      (res) => res.json()
+    );
+  } else if (location === "London") {
+    searchResults = await fetch("https://www.jsonkeeper.com/b/6S0I").then(
+      (res) => res.json()
+    );
+  } else {
+    searchResults = await fetch("https://www.jsonkeeper.com/b/6S0I").then(
+      (res) => res.json()
+    );
+  }
 
   return {
     props: {

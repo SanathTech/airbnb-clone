@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Map, { Marker, Popup } from "react-map-gl";
 import getCenter from "geolib/es/getCenter";
 
 function MapBox({ searchResults }) {
   const [selectedLocation, setSelectedLocation] = useState({});
-
   // Transform the search results object into the  lat long object required
   const coordinates = searchResults?.map((result) => ({
     longitude: result.long,
@@ -20,6 +19,16 @@ function MapBox({ searchResults }) {
     longitude: center.longitude,
     zoom: 11,
   });
+
+  useEffect(() => {
+    setViewState({
+      width: "100%",
+      height: "100%",
+      latitude: center.latitude,
+      longitude: center.longitude,
+      zoom: 11,
+    });
+  }, [searchResults]);
 
   return (
     <Map

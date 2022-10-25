@@ -17,6 +17,7 @@ function Header({ placeholder }) {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [noOfGuests, setNoOfGuests] = useState(1);
+  const [location, setLocation] = useState("");
   const router = useRouter();
 
   const handleSelect = (ranges) => {
@@ -32,7 +33,7 @@ function Header({ placeholder }) {
     router.push({
       pathname: "/search",
       query: {
-        location: searchInput,
+        location: location,
         startDate: startDate.toISOString(),
         endDate: endDate.toISOString(),
         noOfGuests,
@@ -45,6 +46,17 @@ function Header({ placeholder }) {
     startDate: startDate,
     endDate: endDate,
     key: "selection",
+  };
+
+  const findLocation = (e) => {
+    setSearchInput(e.target.value);
+    if ("new york".includes(e.target.value.toLowerCase())) {
+      setLocation("New York");
+    } else if ("london".includes(e.target.value.toLowerCase())) {
+      setLocation("London");
+    } else {
+      setLocation("Unknown");
+    }
   };
 
   return (
@@ -66,7 +78,7 @@ function Header({ placeholder }) {
       <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
         <input
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={(e) => findLocation(e)}
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
           placeholder={placeholder || "Start your search"}
