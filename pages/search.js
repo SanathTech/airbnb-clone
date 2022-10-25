@@ -33,22 +33,35 @@ function Search({ searchResults }) {
           </div>
           <div className="flex flex-col">
             {searchResults?.map(
-              ({ img, location, title, description, star, price, total }) => (
+              ({
+                img,
+                message,
+                name,
+                guests,
+                beds,
+                baths,
+                amenities,
+                rating,
+                price,
+                per_night,
+              }) => (
                 <InfoCard
                   key={img}
                   img={img}
-                  location={location}
-                  title={title}
-                  description={description}
-                  star={star}
-                  price={price}
-                  total={total}
+                  location={message}
+                  title={name}
+                  description={`${guests} · ${beds} · ${baths} · ${amenities
+                    .map((amenity) => amenity)
+                    .join(" · ")}`}
+                  star={rating}
+                  price={per_night}
+                  total={price}
                 />
               )
             )}
           </div>
         </section>
-        <section className="hidden xl:inline-flex xl:min-w-[40%] sticky top-[76px] h-[94vh]">
+        <section className="hidden xl:inline-flex xl:min-w-[40%] sticky top-[76px] h-[calc(100vh-76px)]">
           <MapBox searchResults={searchResults} />
         </section>
       </main>
@@ -60,7 +73,7 @@ function Search({ searchResults }) {
 export default Search;
 
 export async function getServerSideProps() {
-  const searchResults = await fetch("https://www.jsonkeeper.com/b/5NPS").then(
+  const searchResults = await fetch("https://www.jsonkeeper.com/b/OVTA").then(
     (res) => res.json()
   );
 

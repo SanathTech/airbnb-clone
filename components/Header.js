@@ -29,7 +29,6 @@ function Header({ placeholder }) {
   };
 
   const search = () => {
-    setSearchInput("");
     router.push({
       pathname: "/search",
       query: {
@@ -39,6 +38,7 @@ function Header({ placeholder }) {
         noOfGuests,
       },
     });
+    setSearchInput("");
   };
 
   const selectionRange = {

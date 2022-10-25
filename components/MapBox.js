@@ -52,7 +52,7 @@ function MapBox({ searchResults }) {
               longitude={result.long}
               anchor="bottom-right"
             >
-              {result.title}
+              {result.name}
             </Popup>
           ) : (
             false
