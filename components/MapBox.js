@@ -43,7 +43,7 @@ function MapBox({ searchResults }) {
             <p
               role="img"
               onClick={() => setSelectedLocation(result)}
-              className="cursor-pointer text-md bg-white rounded-lg px-2 shadow-md font-semibold"
+              className="cursor-pointer text-md bg-white rounded-lg px-2 shadow-md font-semibold hover:bg-black hover:text-white"
               aria-label="push-pin"
             >
               {result.price}
