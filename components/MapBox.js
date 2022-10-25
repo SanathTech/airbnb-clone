@@ -39,18 +39,14 @@ function MapBox({ searchResults }) {
     >
       {searchResults.map((result, index) => (
         <div key={index}>
-          <Marker
-            longitude={result.long}
-            latitude={result.lat}
-            anchor="bottom-left"
-          >
+          <Marker longitude={result.long} latitude={result.lat}>
             <p
               role="img"
               onClick={() => setSelectedLocation(result)}
-              className="cursor-pointer text-2xl animate-bounce"
+              className="cursor-pointer text-md bg-white rounded-lg px-2 shadow-md font-semibold"
               aria-label="push-pin"
             >
-              📌
+              {result.price}
             </p>
           </Marker>
           {selectedLocation.long === result.long ? (
