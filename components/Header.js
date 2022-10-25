@@ -83,11 +83,11 @@ function Header({ placeholder }) {
       </div>
 
       {/* middle - Search */}
-      <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
+      <div className="flex items-center min-w-[230px] md:border-2 rounded-full py-2 md:shadow-sm">
         <input
           value={searchInput}
           onChange={(e) => findLocation(e)}
-          className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
+          className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
           placeholder={placeholder || "Start your search"}
           onKeyDown={handleKeyDown}
@@ -100,7 +100,7 @@ function Header({ placeholder }) {
 
       {/* right - Become a host + Icons */}
       <div className="flex space-x-4 items-center justify-end text-gray-500">
-        <p className="hidden md:inline cursor-pointer">Become a host</p>
+        <p className="hidden lg:inline cursor-pointer">Become a host</p>
         <GlobeAltIcon className="h-6 cursor-pointer" />
         <div className="flex items-center space-x-2 border-2 p-2 rounded-full cursor-pointer">
           <Bars3Icon className="h-6" />
