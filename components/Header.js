@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MagnifyingGlassIcon,
   GlobeAltIcon,
@@ -30,16 +30,18 @@ function Header({ placeholder }) {
   };
 
   const search = () => {
-    router.push({
-      pathname: "/search",
-      query: {
-        location: location,
-        startDate: startDate.toISOString(),
-        endDate: endDate.toISOString(),
-        noOfGuests,
-      },
-    });
-    setSearchInput("");
+    if (searchInput !== "") {
+      router.push({
+        pathname: "/search",
+        query: {
+          location: location,
+          startDate: startDate.toISOString(),
+          endDate: endDate.toISOString(),
+          noOfGuests,
+        },
+      });
+      setSearchInput("");
+    }
   };
 
   const selectionRange = {
@@ -56,6 +58,12 @@ function Header({ placeholder }) {
       setLocation("London");
     } else {
       setLocation("Unknown");
+    }
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      search();
     }
   };
 
@@ -82,8 +90,12 @@ function Header({ placeholder }) {
           className="flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
           placeholder={placeholder || "Start your search"}
+          onKeyDown={handleKeyDown}
         />
-        <MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2" />
+        <MagnifyingGlassIcon
+          onClick={search}
+          className="hidden md:inline-flex h-8 bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"
+        />
       </div>
 
       {/* right - Become a host + Icons */}
