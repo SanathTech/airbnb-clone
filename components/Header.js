@@ -52,12 +52,39 @@ function Header({ placeholder }) {
 
   const findLocation = (e) => {
     setSearchInput(e.target.value);
+    setLocation("Unknown");
     if ("new york".includes(e.target.value.toLowerCase())) {
       setLocation("New York");
-    } else if ("london".includes(e.target.value.toLowerCase())) {
+    }
+    if ("london".includes(e.target.value.toLowerCase())) {
       setLocation("London");
-    } else {
-      setLocation("Unknown");
+    }
+    if ("dubai".includes(e.target.value.toLowerCase())) {
+      setLocation("Dubai");
+    }
+    if ("paris".includes(e.target.value.toLowerCase())) {
+      setLocation("Paris");
+    }
+    if ("manchester".includes(e.target.value.toLowerCase())) {
+      setLocation("Manchester");
+    }
+    if ("liverpool".includes(e.target.value.toLowerCase())) {
+      setLocation("Liverpool");
+    }
+    if ("york".includes(e.target.value.toLowerCase())) {
+      setLocation("York");
+    }
+    if ("cardiff".includes(e.target.value.toLowerCase())) {
+      setLocation("Cardiff");
+    }
+    if ("birkenhead".includes(e.target.value.toLowerCase())) {
+      setLocation("Birkenhead");
+    }
+    if ("newquay".includes(e.target.value.toLowerCase())) {
+      setLocation("Newquay");
+    }
+    if ("hove".includes(e.target.value.toLowerCase())) {
+      setLocation("Hove");
     }
   };
 
@@ -89,7 +116,9 @@ function Header({ placeholder }) {
           onChange={(e) => findLocation(e)}
           className="hidden md:inline flex-grow pl-5 bg-transparent outline-none text-sm text-gray-600 placeholder-gray-400"
           type="text"
-          placeholder={placeholder || "Start your search"}
+          placeholder={
+            placeholder || "Search London, New York, Dubai or Paris..."
+          }
           onKeyDown={handleKeyDown}
         />
         <MagnifyingGlassIcon

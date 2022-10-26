@@ -3,12 +3,26 @@ import React from "react";
 import { useRouter } from "next/dist/client/router";
 
 function Banner() {
+  const locations = [
+    "London",
+    "New York",
+    "Dubai",
+    "Paris",
+    "Manchester",
+    "Liverpool",
+    "York",
+    "Cardiff",
+    "Birkenhead",
+    "Newquay",
+    "Hove",
+  ];
+  const location = locations[Math.floor(Math.random() * locations.length)];
   const router = useRouter();
   const search = () => {
     router.push({
       pathname: "/search",
       query: {
-        location: "London",
+        location: location,
         startDate: new Date().toISOString(),
         endDate: new Date().toISOString(),
         noOfGuests: 1,

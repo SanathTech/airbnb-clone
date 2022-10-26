@@ -11,7 +11,6 @@
   "dependencies": {
     "@badrap/bar-of-progress": "^0.2.2",
     "@heroicons/react": "^2.0.12",
-    "apify-client": "^2.6.1",
     "date-fns": "^2.29.3",
     "geolib": "^3.3.3",
     "mapbox-gl": "^2.10.0",
